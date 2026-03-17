@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const authorSlice = createSlice({
   name: 'author',
-  initialState: 0, 
+  initialState: null as number | null, 
   reducers: {
     setAuthor: (state, action: PayloadAction<number>) => action.payload,
   },
