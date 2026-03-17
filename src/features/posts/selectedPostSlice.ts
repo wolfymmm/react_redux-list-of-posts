@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const selectedPostSlice = createSlice({
-  name: 'selectedPost',
+  name: 'selectedPostId',
   initialState: null as number | null,
   reducers: {
-    setSelectedPostId: (state, action: PayloadAction<number | null>) => action.payload,
+    set: (state, action: PayloadAction<number | null>) => action.payload,
   },
 });
 
-export const { setSelectedPostId } = selectedPostSlice.actions;
+export const { set: setSelectedPostId } = selectedPostSlice.actions;
 export default selectedPostSlice.reducer;

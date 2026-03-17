@@ -12,17 +12,19 @@ import { Loader } from './components/Loader';
 
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { initUsers } from './features/users/usersSlice';
-import { initPosts, setSelectedPostId } from './features/posts/postsSlice';
+import { initPosts } from './features/posts/postsSlice';
 import { setAuthor } from './features/author/authorSlice';
+import { setSelectedPostId } from './features/posts/selectedPostSlice';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
 
-
   const users = useAppSelector(state => state.users);
   const authorId = useAppSelector(state => state.author);
-  const { items: posts, loaded, hasError, selectedPostId } = useAppSelector(state => state.posts);
 
+  const selectedPostId = useAppSelector(state => state.selectedPostId);
+
+  const { items: posts, loaded, hasError } = useAppSelector(state => state.posts);
 
   const selectedAuthor = useMemo(() =>
     users.find(u => u.id === authorId) || null,
@@ -32,11 +34,9 @@ export const App: React.FC = () => {
     posts.find(p => p.id === selectedPostId) || null,
   [posts, selectedPostId]);
 
-
   useEffect(() => {
     dispatch(initUsers());
   }, [dispatch]);
-
 
   useEffect(() => {
     if (authorId) {

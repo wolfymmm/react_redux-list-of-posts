@@ -9,9 +9,7 @@ export const initComments = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
   'comments/add',
-  async (data: CommentData & { postId: number }) => {
-    return await commentsApi.createComment(data);
-  }
+  (data: CommentData & { postId: number }) => commentsApi.createComment(data)
 );
 
 export const deleteComment = createAsyncThunk(
